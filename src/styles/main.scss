@@ -13,55 +13,12 @@ h1 {
   text-align: center;
   margin-top: 40px;
 }
-.circle {
-  position: relative;
-  width: 530px;
-  height: 530px;
-  margin: 50px auto;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  transition: 0.5s;
+
+.secondary-color {
+  color: $secondary-color;
 }
 
-.item {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: #f4f5f9;
-  border: 1px solid rgba(48, 62, 88, 0.5);
-
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 50%;
-  left: 50%;
-  cursor: pointer;
-
-  font-family: 'PT Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #42567a;
-  transition: 0.2s;
-
-  &::before{
-    content: '';
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &:not(.active) {
-    color: transparent;
-    background: #42567a;
-    &:hover {
-      color: #42567a;
-      background: #f4f5f9;
-    }
-  }
+.primary-color {
+  color: $primary-color;
 }
+

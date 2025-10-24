@@ -3,16 +3,16 @@ import { useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { useDispatch } from 'react-redux';
 import { timelineSliceActions } from '../../store/timelineSlice';
+import './Circle.scss';
+import { AnimatedYear } from '../AnimatedYear/AnimatedYear';
 
 export function Circle() {
-  const activeItem = useSelector(
+  const activeItemId = useSelector(
     (state: RootState) => state.timeline.activeTimelineId
   );
   const items = useSelector((state: RootState) => state.timeline.timelines);
-  const item = useSelector((state: RootState) => state.timeline.timelines).find(
-    (item) => item.id === activeItem
-  );
-  const peak = 300;
+  const activeItemIndex = items.findIndex((item) => item.id === activeItemId);
+  const peak = 240;
   const anglePerItem = 360 / items.length;
   const dispatch = useDispatch<AppDispatch>();
 
@@ -20,6 +20,8 @@ export function Circle() {
   const [radius, setRadius] = useState(0);
   const [rotate, setRotate] = useState(peak);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
+  const [showTopic, setShowTopic] = useState<number | null>(activeItemId);
 
   useEffect(() => {
     if (circleRef.current) {
@@ -29,36 +31,52 @@ export function Circle() {
       ];
       setRadius(Math.min(width, height) / 2);
     }
-    setRotate(peak - activeItem * anglePerItem);
+    setRotate(peak - activeItemIndex * anglePerItem);
   }, []);
 
   const handleClick = (index: number) => {
     setRotate(peak - index * anglePerItem);
-    dispatch(timelineSliceActions.setActiveTimeline(index));
+    dispatch(timelineSliceActions.setActiveTimeline(items[index].id));
+
+    setShowTopic(null);
+
+    setTimeout(() => {
+      setShowTopic(items[index].id);
+    }, 1000);
   };
 
   return (
-    <>
+    <div className='circle-timeline'>
+      <div className='years'>
+        <AnimatedYear
+          year={items[activeItemIndex].yearFrom}
+          style='primary-color'
+        />
+        <AnimatedYear
+          year={items[activeItemIndex].yearTo}
+          style='secondary-color'
+        />
+      </div>
       <div
         className='circle'
         ref={circleRef}
         style={{ transform: `rotate(${rotate}deg)` }}
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           const baseSize = 56;
           const smallSize = 6;
           const size =
-            item.id === activeItem || hoverIndex === item.id
+            item.id === activeItemId || hoverIndex === index
               ? baseSize
               : smallSize;
-          const angle = (360 / items.length) * item.id;
+          const angle = (360 / items.length) * (index + 1);
           const rad = (angle * 3.14) / 180;
           const x = radius * Math.cos(rad) - size / 2;
           const y = radius * Math.sin(rad) - size / 2;
           return (
             <div
               key={item.id}
-              className={`item ${item.id === activeItem ? 'active' : ''}`}
+              className={`item ${item.id === activeItemId ? 'active' : ''}`}
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
@@ -66,18 +84,20 @@ export function Circle() {
                   360 - rotate
                 }deg)`
               }}
-              onClick={() => handleClick(item.id)}
-              onMouseEnter={() => setHoverIndex(item.id)}
+              onClick={() => handleClick(index)}
+              onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
             >
-              {item.id}
+              {index + 1}
+              <div
+                className={`topic ${showTopic === item.id ? 'visible' : ''}`}
+              >
+                {item.topic}
+              </div>
             </div>
           );
         })}
       </div>
-      <div className='title'>
-        {item?.yearFrom} - {item?.yearTo}
-      </div>
-    </>
+    </div>
   );
 }
