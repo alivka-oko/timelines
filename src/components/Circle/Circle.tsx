@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch } from 'react-redux';
 import { timelineSliceActions } from '../../store/timelineSlice';
 import './Circle.scss';
@@ -18,10 +18,10 @@ export function Circle() {
 
   const circleRef = useRef<HTMLDivElement>(null);
   const [radius, setRadius] = useState(0);
-  const [rotate, setRotate] = useState(peak);
+  const [rotate, setRotate] = useState(240);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const [showTopic, setShowTopic] = useState<number | null>(activeItemId);
+  const [showTopic, setShowTopic] = useState<boolean>(true);
 
   useEffect(() => {
     if (circleRef.current) {
@@ -37,11 +37,10 @@ export function Circle() {
   const handleClick = (index: number) => {
     setRotate(peak - index * anglePerItem);
     dispatch(timelineSliceActions.setActiveTimeline(items[index].id));
-
-    setShowTopic(null);
+    setShowTopic(false);
 
     setTimeout(() => {
-      setShowTopic(items[index].id);
+      setShowTopic(true);
     }, 1000);
   };
 
@@ -90,7 +89,9 @@ export function Circle() {
             >
               {index + 1}
               <div
-                className={`topic ${showTopic === item.id ? 'visible' : ''}`}
+                className={`topic ${
+                  showTopic && activeItemId === item.id ? 'visible' : ''
+                }`}
               >
                 {item.topic}
               </div>

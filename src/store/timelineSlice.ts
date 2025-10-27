@@ -4,7 +4,7 @@ import { mockTimelines } from '../mocks/timelines';
 
 const initialState: TimelineState = {
   activeTimelineId: 1,
-  timelines: mockTimelines
+  timelines: mockTimelines,
 };
 
 const timelineSlice = createSlice({

@@ -9,6 +9,7 @@ export const App = () => {
   return (
     <>
       <Circle />
+      <Circle />
     </>
   );
 };
