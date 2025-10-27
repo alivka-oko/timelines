@@ -6,24 +6,26 @@ import { timelineSliceActions } from '../../store/timelineSlice';
 import './Circle.scss';
 import { AnimatedYear } from '../AnimatedYear/AnimatedYear';
 
-export function Circle({ name }: { name: string }) {
+export function Circle({ groupName }: { groupName: string }) {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(timelineSliceActions.initGroup(groupName));
+  }, [groupName]);
+
   const items = useSelector((state: RootState) => state.timeline.timelines);
-  const activeItemId =
-    useSelector((state: RootState) => state.timeline.activeIdGroups[name]) ||
-    items[0].id;
+  const group = useSelector((state: RootState) => state.timeline.activeIdGroups[groupName]);
+  const activeItemId = group?.id ?? items[0].id;
 
   const activeItemIndex = items.findIndex((item) => item.id === activeItemId);
   const peak = 240;
   const anglePerItem = 360 / items.length;
-  const dispatch = useDispatch<AppDispatch>();
 
   const circleRef = useRef<HTMLDivElement>(null);
   const [radius, setRadius] = useState(0);
   const [rotate, setRotate] = useState(240);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const [showTopic, setShowTopic] = useState<boolean>(true);
-
+  const showTopic = group?.showTopic ?? false;
   useEffect(() => {
     if (circleRef.current) {
       const [width, height] = [
@@ -39,15 +41,14 @@ export function Circle({ name }: { name: string }) {
     setRotate(peak - index * anglePerItem);
     dispatch(
       timelineSliceActions.changeIdByGroupName({
-        groupName: name,
+        groupName,
         id: items[index].id
       })
     );
-    // dispatch(timelineSliceActions.setActiveTimeline(items[index].id));
-    setShowTopic(false);
+    dispatch(timelineSliceActions.toggleShowTopic({ groupName, show: false }));
 
     setTimeout(() => {
-      setShowTopic(true);
+      dispatch(timelineSliceActions.toggleShowTopic({ groupName, show: true }));
     }, 1000);
   };
 

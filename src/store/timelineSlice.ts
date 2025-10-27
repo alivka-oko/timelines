@@ -11,11 +11,27 @@ const timelineSlice = createSlice({
   name: 'timeline',
   initialState,
   reducers: {
+    initGroup(state, action: PayloadAction<string>) {
+      const isExist = state.activeIdGroups[action.payload];
+      if (!isExist) {
+        state.activeIdGroups[action.payload] = {
+          id: state.timelines[0].id,
+          showTopic: true
+        };
+      }
+    },
     changeIdByGroupName(
       state,
       action: PayloadAction<{ groupName: string; id: number }>
     ) {
-      state.activeIdGroups[action.payload.groupName] = action.payload.id;
+      state.activeIdGroups[action.payload.groupName].id = action.payload.id;
+    },
+    toggleShowTopic(
+      state,
+      action: PayloadAction<{ groupName: string; show: boolean }>
+    ) {
+      state.activeIdGroups[action.payload.groupName].showTopic =
+        action.payload.show;
     }
   }
 });
