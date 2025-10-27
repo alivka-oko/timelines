@@ -3,16 +3,19 @@ import { TimelineState } from './types';
 import { mockTimelines } from '../mocks/timelines';
 
 const initialState: TimelineState = {
-  activeTimelineId: 1,
-  timelines: mockTimelines,
+  activeIdGroups: {},
+  timelines: mockTimelines
 };
 
 const timelineSlice = createSlice({
   name: 'timeline',
   initialState,
   reducers: {
-    setActiveTimeline(state, action: PayloadAction<number>) {
-      state.activeTimelineId = action.payload;
+    changeIdByGroupName(
+      state,
+      action: PayloadAction<{ groupName: string; id: number }>
+    ) {
+      state.activeIdGroups[action.payload.groupName] = action.payload.id;
     }
   }
 });

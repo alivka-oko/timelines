@@ -6,11 +6,12 @@ import { timelineSliceActions } from '../../store/timelineSlice';
 import './Circle.scss';
 import { AnimatedYear } from '../AnimatedYear/AnimatedYear';
 
-export function Circle() {
-  const activeItemId = useSelector(
-    (state: RootState) => state.timeline.activeTimelineId
-  );
+export function Circle({ name }: { name: string }) {
   const items = useSelector((state: RootState) => state.timeline.timelines);
+  const activeItemId =
+    useSelector((state: RootState) => state.timeline.activeIdGroups[name]) ||
+    items[0].id;
+
   const activeItemIndex = items.findIndex((item) => item.id === activeItemId);
   const peak = 240;
   const anglePerItem = 360 / items.length;
@@ -32,11 +33,17 @@ export function Circle() {
       setRadius(Math.min(width, height) / 2);
     }
     setRotate(peak - activeItemIndex * anglePerItem);
-  }, []);
+  }, [activeItemIndex]);
 
   const handleClick = (index: number) => {
     setRotate(peak - index * anglePerItem);
-    dispatch(timelineSliceActions.setActiveTimeline(items[index].id));
+    dispatch(
+      timelineSliceActions.changeIdByGroupName({
+        groupName: name,
+        id: items[index].id
+      })
+    );
+    // dispatch(timelineSliceActions.setActiveTimeline(items[index].id));
     setShowTopic(false);
 
     setTimeout(() => {
