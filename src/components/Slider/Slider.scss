@@ -13,7 +13,7 @@
   color: $blue-color;
 }
 .swiper {
-  width: 1200px;
+  width: 1280px;
 }
 
 .swiper-slide {
@@ -60,10 +60,10 @@
   background: transparent;
   transition: background 0.2s;
   &.button-next {
-    right: 40px;
+    right: 20px;
   }
   &.button-prev {
-    left: 40px;
+    left: 20px;
     transform: translateY(-50%) rotate(180deg);
   }
   &:hover {

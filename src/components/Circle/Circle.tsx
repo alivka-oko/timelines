@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { timelineSliceActions } from '../../store/timelineSlice';
 import './Circle.scss';
 import { AnimatedYear } from '../AnimatedYear/AnimatedYear';
+import { changeIdWithAnimation } from '../../store/timelineThunks';
 
 export function Circle({ groupName }: { groupName: string }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -13,7 +14,9 @@ export function Circle({ groupName }: { groupName: string }) {
   }, [groupName]);
 
   const items = useSelector((state: RootState) => state.timeline.timelines);
-  const group = useSelector((state: RootState) => state.timeline.activeIdGroups[groupName]);
+  const group = useSelector(
+    (state: RootState) => state.timeline.activeIdGroups[groupName]
+  );
   const activeItemId = group?.id ?? items[0].id;
 
   const activeItemIndex = items.findIndex((item) => item.id === activeItemId);
@@ -39,17 +42,7 @@ export function Circle({ groupName }: { groupName: string }) {
 
   const handleClick = (index: number) => {
     setRotate(peak - index * anglePerItem);
-    dispatch(
-      timelineSliceActions.changeIdByGroupName({
-        groupName,
-        id: items[index].id
-      })
-    );
-    dispatch(timelineSliceActions.toggleShowTopic({ groupName, show: false }));
-
-    setTimeout(() => {
-      dispatch(timelineSliceActions.toggleShowTopic({ groupName, show: true }));
-    }, 1000);
+    dispatch(changeIdWithAnimation(groupName, items[index].id));
   };
 
   return (

@@ -26,7 +26,7 @@ const timelineSlice = createSlice({
     ) {
       state.activeIdGroups[action.payload.groupName].id = action.payload.id;
     },
-    toggleShowTopic(
+    toggleShow(
       state,
       action: PayloadAction<{ groupName: string; show: boolean }>
     ) {
@@ -37,4 +37,4 @@ const timelineSlice = createSlice({
 });
 
 export const timelineSliceActions = timelineSlice.actions;
-export default timelineSlice;
+export default timelineSlice.reducer;
