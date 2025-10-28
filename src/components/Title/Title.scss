@@ -9,7 +9,6 @@
   gap: 80px;
   max-width: 500px;
   justify-content: flex-start;
-  margin-bottom: -150px;
   &::before {
     content: '';
     display: block;
@@ -21,4 +20,8 @@
       $secondary-color 100%
     );
   }
+}
+
+.title + .circle-timeline {
+  margin-top: -140px;
 }

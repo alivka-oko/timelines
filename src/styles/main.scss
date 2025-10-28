@@ -23,10 +23,23 @@ body {
 }
 
 .container {
+  position: relative;
   max-width: 1440px;
   margin: 0 auto;
   border: 1px solid $gray-color;
-  min-height: 100vh;
   overflow-x: hidden;
-  padding: 104px 0 170px 0;
+  padding: 170px 0 104px 0;
+    &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: auto;
+    min-height: 100%;
+    background-color: $gray-color;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+  }
 }
