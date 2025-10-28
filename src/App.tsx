@@ -8,11 +8,10 @@ const peak = 300;
 
 export const App = () => {
   return (
-    <>
-      <Circle groupName='timeline' />
+    <div className='container'>
       <Circle groupName='timeline' />
       <Slider groupName='timeline' />
-    </>
+    </div>
   );
 };
 

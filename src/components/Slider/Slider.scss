@@ -1,0 +1,13 @@
+@use '/src/styles/variables' as *;
+
+.slide {
+  opacity: 0;
+  transition: scale 0.2s;
+  scale: 0.95;
+  width: 400px;
+  height: 135px;
+  &.visible {
+    opacity: 1;
+    scale: 1;
+  }
+}
