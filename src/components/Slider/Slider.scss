@@ -4,10 +4,50 @@
   opacity: 0;
   transition: scale 0.2s;
   scale: 0.95;
-  width: 400px;
+  min-width: 320px;
   height: 135px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+
+  color: $blue-color;
+
   &.visible {
     opacity: 1;
     scale: 1;
   }
+}
+.swiper {
+  width: 1200px;
+}
+
+.swiper-slide {
+  max-width: max-content;
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.swiper-button-disabled {
+  display: none !important;
+}
+
+.slide-year {
+  font-family: 'Bebas Neue';
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: $accent-color;
+}
+.timeline-slider {
+  position: relative;
+}
+
+.custom-nav {
+  color: $accent-color !important;
+  width: 40px !important;
+  height: 40px !important;
 }

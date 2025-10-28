@@ -25,7 +25,7 @@
   height: 530px;
   margin: 50px auto;
   border-radius: 50%;
-  border: 2px solid #e3e6ed;
+  border: 2px solid $gray-color;
   transition: transform 1s;
 }
 
@@ -49,7 +49,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  color: $gray-color;
+  color: $blue-color;
   transition: 0.2s;
 
   &::before {
@@ -64,9 +64,9 @@
 
   &:not(.active) {
     color: transparent;
-    background: $gray-color;
+    background: $blue-color;
     &:hover {
-      color: $gray-color;
+      color: $blue-color;
       background: #f4f5f9;
     }
   }
@@ -80,11 +80,36 @@
   left: 100px;
   white-space: nowrap;
   pointer-events: none;
-  color: #42567a;
+  color: $blue-color;
   font-weight: 700;
   transform: translate(-30px, 0px);
   &.visible {
     opacity: 1;
     transform: translate(0px, 0px);
+  }
+}
+
+.circle-timeline {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 1px;
+    background-color: $gray-color;
+    margin: 0 auto;
+    top: 50%;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 100vh;
+    background-color: $gray-color;
+    margin: 0 auto;
+    top: 0;
+    right: 50%;
   }
 }

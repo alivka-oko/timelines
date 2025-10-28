@@ -1,5 +1,11 @@
 @use './variables' as *;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: $font-stack;
   background: #f8f9fb;
@@ -22,3 +28,10 @@ h1 {
   color: $primary-color;
 }
 
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  border: 1px solid $gray-color;
+  height: 100vh;
+  overflow: hidden;
+}
