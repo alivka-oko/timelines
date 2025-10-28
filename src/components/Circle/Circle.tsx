@@ -25,7 +25,7 @@ export function Circle({ groupName }: { groupName: string }) {
   const [rotate, setRotate] = useState(240);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const showTopic = group?.showTopic ?? false;
+  const showTopic = group?.show ?? false;
   useEffect(() => {
     if (circleRef.current) {
       const [width, height] = [

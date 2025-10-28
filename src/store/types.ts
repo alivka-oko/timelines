@@ -13,6 +13,6 @@ export interface ITimeline {
 }
 
 export interface TimelineState {
-  activeIdGroups: Record<string, { id: number; showTopic: boolean }>;
+  activeIdGroups: Record<string, { id: number; show: boolean }>;
   timelines: ITimeline[];
 }

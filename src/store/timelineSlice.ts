@@ -16,7 +16,7 @@ const timelineSlice = createSlice({
       if (!isExist) {
         state.activeIdGroups[action.payload] = {
           id: state.timelines[0].id,
-          showTopic: true
+          show: true
         };
       }
     },
@@ -30,7 +30,7 @@ const timelineSlice = createSlice({
       state,
       action: PayloadAction<{ groupName: string; show: boolean }>
     ) {
-      state.activeIdGroups[action.payload.groupName].showTopic =
+      state.activeIdGroups[action.payload.groupName].show =
         action.payload.show;
     }
   }
