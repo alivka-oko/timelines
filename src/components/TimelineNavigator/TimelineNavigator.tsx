@@ -43,7 +43,7 @@ export function TimelineNavigator({ groupName }: { groupName: string }) {
             <path
               d='M7.66418 0.707108L1.41419 6.95711L7.66418 13.2071'
               stroke='#42567A'
-              stroke-width='2'
+              strokeWidth='2'
             />
           </svg>
         </button>
@@ -62,7 +62,7 @@ export function TimelineNavigator({ groupName }: { groupName: string }) {
             <path
               d='M7.66418 0.707108L1.41419 6.95711L7.66418 13.2071'
               stroke='#42567A'
-              stroke-width='2'
+              strokeWidth='2'
             />
           </svg>
         </button>

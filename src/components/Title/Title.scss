@@ -1,0 +1,24 @@
+@use '/src/styles/variables' as *;
+
+.title {
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 120%;
+  color: #42567a;
+  display: flex;
+  gap: 80px;
+  max-width: 500px;
+  justify-content: flex-start;
+  margin-bottom: -150px;
+  &::before {
+    content: '';
+    display: block;
+    height: 120px;
+    width: 5px;
+    background: linear-gradient(
+      180deg,
+      $accent-color 0%,
+      $secondary-color 100%
+    );
+  }
+}

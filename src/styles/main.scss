@@ -14,12 +14,6 @@ body {
   padding: 0;
 }
 
-h1 {
-  color: $primary-color;
-  text-align: center;
-  margin-top: 40px;
-}
-
 .secondary-color {
   color: $secondary-color;
 }
@@ -32,6 +26,7 @@ h1 {
   max-width: 1440px;
   margin: 0 auto;
   border: 1px solid $gray-color;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 104px 0 170px 0;
 }
