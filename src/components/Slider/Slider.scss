@@ -101,5 +101,8 @@
     background: $blue-color;
     opacity: 0.4;
     border-radius: 50%;
+    &-active{
+      opacity: 1;
+    }
   }
 }

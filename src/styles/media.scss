@@ -1,7 +1,6 @@
 @media (max-width: 1024px) {
   .circle-timeline {
     .years {
-      // font-size: 180px !important;
       font-size: clamp(1rem, 14% + 15vw, 12rem) !important;
       gap: 135px;
     }
