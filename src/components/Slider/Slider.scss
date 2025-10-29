@@ -1,8 +1,8 @@
 @use '/src/styles/variables' as *;
 
 .slide {
-  min-width: 320px;
-  height: 135px;
+  min-width: 160px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -13,15 +13,18 @@
   color: $blue-color;
 }
 .swiper {
-  width: 1280px;
+  max-width: 1280px;
+  width: 100%;
 }
 
 .swiper-slide {
-  max-width: max-content;
-  min-width: 320px;
+  min-width: 160px;
+  width: 100%;
   max-width: 400px;
 }
-
+.timeline-slider {
+  background: #f8f9fb;
+}
 .swiper-button-disabled {
   display: none !important;
 }
@@ -39,9 +42,22 @@
   opacity: 0;
   transition: scale 0.5s, opacity 0.5s;
   scale: 0.95;
+  padding: 0 80px;
   &.visible {
     opacity: 1;
     scale: 1;
+  }
+  &::before {
+    position: absolute;
+    display: none;
+    content: '';
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(0.25turn, transparent, #f8f9fbc9);
+    pointer-events: none;
+    z-index: 10;
   }
 }
 
@@ -59,6 +75,7 @@
   transform: translateY(-50%);
   background: transparent;
   transition: background 0.2s;
+  z-index: 15;
   &.button-next {
     right: 20px;
   }
@@ -69,5 +86,20 @@
   &:hover {
     background: #ffffff;
     box-shadow: 0px 0px 15px rgba(56, 119, 238, 0.1);
+  }
+}
+
+.custom-pagination {
+  display: none;
+  gap: 10px;
+  align-items: flex-end;
+  padding: 20px 0;
+  .swiper-pagination-bullet {
+    cursor: pointer;
+    width: 6px;
+    height: 6px;
+    background: $blue-color;
+    opacity: 0.4;
+    border-radius: 50%;
   }
 }

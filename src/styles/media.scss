@@ -1,0 +1,112 @@
+@media (max-width: 1024px) {
+  .circle-timeline {
+    .years {
+      // font-size: 180px !important;
+      font-size: clamp(1rem, 14% + 15vw, 12rem) !important;
+      gap: 135px;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    padding: 0;
+  }
+  .circle-timeline {
+    &::before {
+      display: none !important;
+    }
+    .years {
+      gap: 30px;
+      position: relative;
+      left: 0;
+      top: 0;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transform: translate(0, 0);
+      line-height: 72px;
+      margin-top: 56px;
+    }
+    .circle {
+      display: none;
+    }
+  }
+  .title + .circle-timeline {
+    margin-top: 0px !important;
+  }
+  .circle-timeline + .timeline__navigator {
+    margin-top: 0px !important;
+  }
+  .container {
+    padding: 70px 20px;
+    &::before {
+      display: none;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 120%;
+      max-width: 124px;
+      &::before {
+        display: none;
+      }
+    }
+  }
+  .timeline-section {
+    display: grid;
+    grid-template-areas:
+      'a a a a'
+      'b c c c';
+    border-top: 1px solid #c7cdd9;
+    padding: 20px 0;
+    margin-top: 58px;
+    row-gap: 78px;
+  }
+  .custom-pagination {
+    display: flex !important;
+    grid-area: c;
+  }
+  .timeline__navigator {
+    padding: 0 !important;
+    gap: 10px;
+    grid-area: b;
+    &-buttons {
+      gap: 10px !important;
+    }
+    &-button {
+      width: 25px !important;
+      height: 25px !important;
+      svg {
+        width: 25%;
+        height: 100%;
+      }
+    }
+  }
+  .timeline-slider {
+    padding: 0 !important;
+    grid-area: a;
+  }
+  .custom-nav {
+    display: none !important;
+  }
+  .swiper-slide {
+    max-width: 166px !important;
+  }
+  .slide {
+    &-desc {
+      font-weight: 400;
+      font-size: 14px !important;
+      line-height: 145%;
+    }
+    &-year {
+      font-size: 16px !important;
+    }
+  }
+  .timeline-slider {
+    &::before {
+      display: block !important;
+    }
+  }
+}

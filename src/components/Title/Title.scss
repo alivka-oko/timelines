@@ -1,8 +1,10 @@
 @use '/src/styles/variables' as *;
 
 .title {
-  font-weight: 700;
+  position: relative;
+  z-index: 2;
   font-size: 56px;
+  font-weight: 700;
   line-height: 120%;
   color: #42567a;
   display: flex;

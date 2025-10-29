@@ -2,13 +2,13 @@
 
 .timeline__navigator {
   padding: 0 80px;
-  margin: 0px 0 56px 0;
-
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   &-counter {
     font-size: 14px;
     line-height: 18px;
     color: $blue-color;
-    margin-bottom: 20px;
   }
   &-buttons {
     display: flex;

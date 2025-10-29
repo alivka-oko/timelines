@@ -21,7 +21,9 @@ body {
 .primary-color {
   color: $primary-color;
 }
-
+.wrapper {
+  padding: 0px 10px;
+}
 .container {
   position: relative;
   max-width: 1440px;
@@ -29,7 +31,7 @@ body {
   border: 1px solid $gray-color;
   overflow-x: hidden;
   padding: 170px 0 104px 0;
-    &::before {
+  &::before {
     content: '';
     display: block;
     position: absolute;
@@ -42,4 +44,11 @@ body {
     top: 0;
     bottom: 0;
   }
+}
+
+.timeline-section {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  grid-auto-columns: 1fr;
 }
