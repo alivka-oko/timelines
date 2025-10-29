@@ -6,7 +6,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    clean: true
+    clean: true,
+    publicPath: './'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
@@ -19,15 +20,11 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.s[ac]ss$/i, // <- поддержка .scss и .sass
-        use: [
-          'style-loader', // вставляет CSS в DOM
-          'css-loader', // разбирает CSS-импорты
-          'sass-loader' // компилирует SCSS → CSS
-        ]
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.css$/i, // <- отдельное правило для обычного CSS (например swiper/css)
+        test: /\.css$/i,
         use: ['style-loader', 'css-loader']
       },
       {
